@@ -1,0 +1,12 @@
+{
+  "name": "CacheImage",
+  "displayName": "CacheImage",
+  "expo": {
+    "name": "CacheImage",
+    "slug": "CacheImage",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
