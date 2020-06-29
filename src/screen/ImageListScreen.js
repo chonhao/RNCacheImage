@@ -2,31 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react-native';
 
-import Unsplash from 'unsplash-js';
 import { Image as ExpoImageCache } from "react-native-expo-image-cache";
-
-const unsplash = new Unsplash({ accessKey: "Nkc9FB5HQ4Y0toRQSkTHCSuORUuLJUP4zD5SUBP2f58" });
 
 
 const ImageListScreen = ({ navigation, route }) => {
-  const [searchResults, setSearchResults] = useState([]);
-
-  const updateImages = () => {
-    unsplash.search.photos("cats", 3, 10, { orientation: "portrait" })
-      .then(res => res.json())
-      .then(data => setSearchResults(data.results))
-  }
-
-  useEffect(() => {
-    updateImages();
-  }, []);
+  var searchResults = route.params?.searchResults;
 
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
       {searchResults && <FlatList
         data={searchResults}
-        initialNumToRender={3}
+        // initialNumToRender={1}
         renderItem={(item) => {
           var urifull = item.item.urls.full;
           var urithumb = item.item.urls.thumb;
@@ -51,7 +38,7 @@ const ImageListScreen = ({ navigation, route }) => {
                     aspectRatio: item.item.height / item.item.width,
                   }}
                   uri={urifull}
-                  // preview={urithumb}
+                  preview={{uri: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2NgYGD4DwABBAEAcCBlCwAAAABJRU5ErkJggg=="}}
                 />
                 : <Image
                   style={{
