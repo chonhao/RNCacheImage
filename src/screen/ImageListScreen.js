@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react-native';
 
 import { Image as ExpoImageCache } from "react-native-expo-image-cache";
+import FastImage from 'react-native-fast-image';
 
 
 const ImageListScreen = ({ navigation, route }) => {
@@ -19,9 +20,9 @@ const ImageListScreen = ({ navigation, route }) => {
           var urithumb = item.item.urls.thumb;
 
           return (
-            <TouchableOpacity onPress={ () => {
+            <TouchableOpacity onPress={() => {
               navigation.navigate("ImageView", {
-                useExpoImageCache: route.params?.useExpoImageCache,
+                whichLibrary: route.params?.whichLibrary,
                 item: {
                   width: item.item.width,
                   height: item.item.height,
@@ -31,22 +32,32 @@ const ImageListScreen = ({ navigation, route }) => {
                 }
               })
             }}>
-              {route.params?.useExpoImageCache
-                ? <ExpoImageCache
+              {route.params?.whichLibrary === "EXPO" &&
+                <ExpoImageCache
                   style={{
                     width: "100%",
                     aspectRatio: item.item.height / item.item.width,
                   }}
                   uri={urifull}
-                  preview={{uri: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2NgYGD4DwABBAEAcCBlCwAAAABJRU5ErkJggg=="}}
+                  preview={{ uri: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2NgYGD4DwABBAEAcCBlCwAAAABJRU5ErkJggg==" }}
                 />
-                : <Image
-                  style={{
-                    width: "100%",
-                    aspectRatio: item.item.height / item.item.width,
-                  }}
-                  source={{ uri: urifull }}
-                />}
+              }
+              {route.params?.whichLibrary === "RN" && 
+              <Image
+                style={{
+                  width: "100%",
+                  aspectRatio: item.item.height / item.item.width,
+                }}
+                source={{ uri: urifull }}
+              />}
+              {route.params?.whichLibrary === "FAST" && 
+              <FastImage
+                style={{
+                  width: "100%",
+                  aspectRatio: item.item.height / item.item.width,
+                }}
+                source={{ uri: urifull }}
+              />}
               <Text>{item.item.alt_description}</Text>
             </TouchableOpacity>
           );

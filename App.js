@@ -14,8 +14,9 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: "Image Library Test" }}/>
-        <Stack.Screen name="RNImage" component={ImageListScreen} options={{ title: "RN Image" }} initialParams={{ useExpoImageCache: false}} />
-        <Stack.Screen name="EXImage" component={ImageListScreen} options={{ title: "Expo Image Cache" }} initialParams={{ useExpoImageCache: true}} />
+        <Stack.Screen name="RNImage" component={ImageListScreen} options={{ title: "RN Image" }} initialParams={{ whichLibrary: "RN"}} />
+        <Stack.Screen name="EXImage" component={ImageListScreen} options={{ title: "Expo Image Cache" }} initialParams={{ whichLibrary: "EXPO"}} />
+        <Stack.Screen name="FastImage" component={ImageListScreen} options={{ title: "RN Fast Image" }} initialParams={{ whichLibrary: "FAST"}} />
         <Stack.Screen name="ImageView" component={ImageViewScreen} />
       </Stack.Navigator>
     </NavigationContainer>

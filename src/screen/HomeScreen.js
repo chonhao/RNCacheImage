@@ -28,6 +28,7 @@ const HomeScreen = ({ navigation }) => {
     }}>
       <Button onPress={() => navigation.navigate("RNImage", { searchResults })} title="RN Image" />
       <Button onPress={() => navigation.navigate("EXImage", { searchResults })} title="Expo Image Cache" />
+      <Button onPress={() => navigation.navigate("FastImage", { searchResults })} title="Fast Image" />
 
       <View style={{ height: 40 }}></View>
 

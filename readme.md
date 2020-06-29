@@ -1,5 +1,8 @@
 # CacheImage
 This project is for exploring the possibilities and feasibilities of different solutions of caching images in react native. 
+1. React Native Built-in Image Library
+2. wcandillon's react-native-expo-image-cache
+3. React Native Fast Image
 
 ## Usage
 This project is a expo bare-workflow project. Run `yarn ios` to run the project
